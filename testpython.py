@@ -22,21 +22,19 @@
 
 
 #Pustil-Systeminformasjon
-import pustil
+import psutil
 import time
 
-temps = pustil.sensors_tempratures()
+temps = psutil.sensors_temperatures()
 
-if tems:
+if temps:
     for name, entries in temps.items():
         for entry in entries:
             print(f"{name} - {entry.label or 'CPU'}: {entry.current}°C")
-
 else:
-    print("Tempraturdata ikke tilgjengelig på dette systemet.")
-
+    print("Temperaturdata ikke tilgjengelig på dette systemet.")
 
 uptime_seconds = time.time() - psutil.boot_time()
 uptime_hours = int(uptime_seconds // 3600)
 uptime_minutes = int((uptime_seconds % 3600) // 60)
-print("System har vært oppe i:", uptime_hours,"timer og", uptime_minutes, "minutter")
+print("System har vært oppe i:", uptime_hours, "timer og", uptime_minutes, "minutter")
